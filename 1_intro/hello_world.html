@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World com HTMX</title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Exemplo HTMX: Hello World</h1>
+    <button
+      hx-get="http://localhost:3000/hello"
+      hx-target="#hello-world-response"
+    >
+      Diga Hello World!
+    </button>
+    <div id="hello-world-response"></div>
+  </body>
+</html>

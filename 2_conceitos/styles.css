@@ -1,0 +1,7 @@
+#loading-indicator {
+  display: none; /* Esconde o indicador por padrão */
+}
+
+#loading-indicator.htmx-request {
+  display: block; /* Mostra o indicador durante a requisição */
+}

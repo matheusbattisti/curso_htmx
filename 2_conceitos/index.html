@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Conceitos fundamentais do HTMX</title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+    <script src="scripts.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h2>Aula 1: Requisição HTTP (hx-get com post)</h2>
+    <button hx-post="http://localhost:3000/post" hx-target="#result">
+      Enviar POST
+    </button>
+    <div id="result"></div>
+
+    <h2>Aula 2: Continuando com Put e Delete</h2>
+    <button hx-put="http://localhost:3000/put" hx-target="#result-put">
+      Enviar PUT
+    </button>
+    <button hx-delete="http://localhost:3000/delete" hx-target="#result-delete">
+      Enviar DELETE
+    </button>
+
+    <div id="result-put"></div>
+    <div id="result-delete"></div>
+
+    <h2>Aula 3: Gatilho de Requisição (hx-trigger)</h2>
+    <input
+      type="text"
+      hx-get="http://localhost:3000/trigger"
+      hx-trigger="keyup"
+      hx-target="#result-trigger"
+    />
+    <div id="result-trigger"></div>
+
+    <h2>
+      Aula 4: Modificador de Trigger (evento once, delay e evento por outro
+      elemento)
+    </h2>
+    <button
+      hx-get="http://localhost:3000/once"
+      hx-trigger="click once"
+      hx-target="#result-once"
+    >
+      Clique-me Uma Vez
+    </button>
+    <button
+      hx-get="http://localhost:3000/delay"
+      hx-trigger="click delay:2000ms"
+      hx-target="#result-delay"
+    >
+      Clique-me com Delay
+    </button>
+
+    <div id="result-once"></div>
+    <div id="result-delay"></div>
+
+    <button
+      id="external-trigger"
+      onclick="document.getElementById('trigger-button').click()"
+    >
+      Clique para Acionar
+    </button>
+    <button
+      id="trigger-button"
+      hx-get="http://localhost:3000/external"
+      hx-trigger="click from:#external-trigger"
+      hx-target="#result-external"
+      style="display: none"
+    >
+      Botão Oculto
+    </button>
+
+    <div id="result-external"></div>
+
+    <h2>
+      Aula 5: Filtros de Trigger - Filtro de Evento com Propriedade do Evento
+    </h2>
+
+    <!-- Requisição é acionada somente se o botão é clicado com a tecla Control pressionada -->
+    <button
+      hx-get="http://localhost:3000/control-click"
+      hx-trigger="click[ctrlKey]"
+      hx-target="#result-control-click"
+    >
+      Clique com Control
+    </button>
+
+    <div id="result-control-click"></div>
+
+    <!-- Requisição é acionada somente se a função global checkCondition() retorna true -->
+    <button
+      hx-get="http://localhost:3000/global-condition"
+      hx-trigger="click[checkCondition()]"
+      hx-target="#result-global-condition"
+    >
+      Clique se a Condição for Verdadeira
+    </button>
+
+    <div id="result-global-condition"></div>
+
+    <h2>Aula 6: Eventos Especiais (load, revealed, intersect, threshold)</h2>
+    <!-- Exemplo: Carregamento automático no load -->
+    <div
+      hx-get="http://localhost:3000/load"
+      hx-trigger="load"
+      hx-target="#result-load"
+    ></div>
+    <div id="result-load"></div>
+
+    <!-- Exemplo: Carregamento quando o elemento se torna visível (revealed) -->
+    <div
+      hx-get="http://localhost:3000/revealed"
+      hx-trigger="revealed"
+      hx-target="#result-revealed"
+      style="margin-top: 1000px"
+    ></div>
+    <div id="result-revealed"></div>
+
+    <h2>Aula 7: Polling</h2>
+    <!-- Exemplo: Atualização automática a cada 5 segundos -->
+    <!-- <div
+      hx-get="http://localhost:3000/polling"
+      hx-trigger="every 5s"
+      hx-target="#result-polling"
+    ></div> -->
+    <div id="result-polling"></div>
+
+    <h2>Aula 8: Indicador de Progresso com HTMX</h2>
+
+    <!-- Botão para acionar a requisição -->
+    <button
+      hx-get="http://localhost:3000/progress"
+      hx-indicator="#loading-indicator"
+      hx-target="#result-progress"
+    >
+      Carregar Conteúdo
+    </button>
+
+    <!-- Div onde o resultado será exibido -->
+    <div id="result-progress"></div>
+
+    <!-- Indicador de carregamento, inicialmente oculto -->
+    <div id="loading-indicator">Carregando...</div>
+
+    <h2>Aula 9: Enviando Dados com Formulário HTMX</h2>
+    <form hx-post="http://localhost:3000/submit" hx-target="#result-form">
+      <input type="text" name="nome" placeholder="Seu Nome" />
+      <input type="email" name="email" placeholder="Seu Email" />
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="result-form"></div>
+
+    <h2>Aula 10: Mensagem de Confirmação</h2>
+    <button
+      hx-delete="http://localhost:3000/delete"
+      hx-confirm="Tem certeza que deseja deletar?"
+      hx-target="#result-confirm"
+    >
+      Deletar Item
+    </button>
+    <div id="result-confirm"></div>
+
+    <h2>Aula 11: Upload de Arquivos</h2>
+    <form
+      hx-post="http://localhost:3000/upload"
+      hx-target="#result-upload"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="arquivo" />
+      <button type="submit">Enviar Arquivo</button>
+    </form>
+    <div id="result-upload"></div>
+
+    <h2>Aula 12: Sincronização de Requisições com HTMX</h2>
+
+    <!-- Primeira Requisição: GET -->
+    <button
+      id="getRequest"
+      hx-get="http://localhost:3000/getData"
+      hx-target="#result-get"
+    >
+      Requisição GET
+    </button>
+
+    <!-- Segunda Requisição: POST, sincronizada com a primeira -->
+    <button
+      id="postRequest"
+      hx-post="http://localhost:3000/postData"
+      hx-target="#result-post"
+      hx-sync="#getRequest:queue"
+    >
+      Requisição POST
+    </button>
+
+    <div id="result-get">
+      <b>Resultado GET</b>
+    </div>
+
+    <div id="result-post">
+      <b>Resultado POST</b>
+    </div>
+
+    <h2>Aula 13: Cancelando Requisições</h2>
+
+    <button
+      id="start-request"
+      hx-get="http://localhost:3000/long-request"
+      hx-target="#response"
+    >
+      Iniciar Requisição Longa
+    </button>
+
+    <button onclick="htmx.trigger('#start-request', 'htmx:abort')">
+      Cancelar Requisição
+    </button>
+
+    <div id="response">
+      <b>Resposta da Requisição</b>
+    </div>
+  </body>
+</html>
