@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Eventos</title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="scripts.js"></script>
+  </head>
+  <body>
+    <!-- Aula 1: Evento de Carregamento de Página -->
+    <h2>Evento de Carregamento de Página</h2>
+
+    <!-- Aula 2: Ações Antes e Depois de um Swap -->
+    <h2>Ações Antes e Depois de um Swap</h2>
+    <button
+      hx-get="http://localhost:3000/beforeAfterSwap"
+      hx-target="#swap-result"
+    >
+      Executar Swap
+    </button>
+    <div id="swap-result"></div>
+
+    <!-- Aula 3: Ações Antes e Depois de um Request -->
+    <h2>Ações Antes e Depois de um Request</h2>
+    <button
+      hx-get="http://localhost:3000/beforeAfterRequest"
+      hx-target="#request-result"
+    >
+      Executar Requisição
+    </button>
+    <div id="request-result"></div>
+
+    <!-- Aula 4: Tratando Falha na Requisição -->
+    <h2>Tratando Falha na Requisição</h2>
+    <button
+      hx-get="http://localhost:3000/endpointQueFalha"
+      hx-target="#error-result"
+    >
+      Tentar Requisição
+    </button>
+    <div id="error-result"></div>
+
+    <!-- Aula 5: Interceptando Request -->
+    <h2>Interceptando Request</h2>
+    <button
+      hx-get="http://localhost:3000/endpointParaInterceptar"
+      hx-target="#intercept-result"
+    >
+      Executar Requisição Interceptada
+    </button>
+    <div id="intercept-result"></div>
+
+    <!-- Aula 6: Conhecendo o HTMX Logger -->
+    <h2>Conhecendo o HTMX Logger</h2>
+    <button
+      hx-get="http://localhost:3000/testLogger"
+      hx-target="#logger-result"
+    >
+      Testar Logger HTMX
+    </button>
+    <div id="logger-result"></div>
+
+    <!-- Aula 7: Eventos de formulário -->
+    <h2>Evento Change em Campo de Formulário</h2>
+    <input
+      type="text"
+      hx-get="http://localhost:3000/onChange"
+      hx-trigger="change"
+      hx-target="#change-response"
+    />
+    <div id="change-response"></div>
+
+    <h2>Eventos Focus e Blur</h2>
+    <input
+      type="text"
+      hx-get="http://localhost:3000/onFocus"
+      hx-trigger="focus"
+      hx-target="#focus-response"
+    />
+    <div id="focus-response"></div>
+
+    <input
+      type="text"
+      hx-get="http://localhost:3000/onBlur"
+      hx-trigger="blur"
+      hx-target="#blur-response"
+    />
+    <div id="blur-response"></div>
+
+    <h2>Validação de Formulário com HTMX</h2>
+    <form
+      hx-post="http://localhost:3000/formValidation"
+      hx-target="#validation-response"
+    >
+      <input type="text" name="username" />
+      <input type="email" name="email" />
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="validation-response"></div>
+
+    <!-- Aula 8: Eventos customizados -->
+    <h2>Eventos Customizados e Acionadores HTMX</h2>
+    <button id="customEventButton">Acionar Evento Customizado</button>
+    <div id="custom-event-response"></div>
+
+    <!-- Aula 9: Eventos de JS com HTMX -->
+    <h2>Integração de Eventos HTMX com JavaScript</h2>
+    <div
+      hx-get="http://localhost:3000/jsIntegration"
+      hx-trigger="mouseover"
+      hx-target="#js-integration-response"
+    >
+      Passe o mouse aqui para carregar
+    </div>
+    <div id="js-integration-response"></div>
+  </body>
+</html>

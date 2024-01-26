@@ -29,12 +29,12 @@ app.get("/beforeAfterRequest", (req, res) => {
   res.send("<p>Conteúdo carregado para o evento de requisição.</p>");
 });
 
-// Rota que intencionalmente falha para a aula de tratamento de falha na requisição
+// Rota para a Aula 4: que intencionalmente falha para a aula de tratamento de falha na requisição
 app.get("/endpointQueFalha", (req, res) => {
   res.status(500).send("Falha intencional do servidor.");
 });
 
-// Rota para a aula de interceptação de request
+// Rota para a Aula 5: para a aula de interceptação de request
 app.get("/endpointParaInterceptar", (req, res) => {
   // Exibir todos os cabeçalhos da requisição recebida no console do servidor
   console.log("Cabeçalhos Recebidos:", req.headers);
@@ -46,6 +46,49 @@ app.get("/endpointParaInterceptar", (req, res) => {
   res.send(
     `Cabeçalhos e parâmetros de consulta recebidos. Veja o console do servidor para detalhes.`
   );
+});
+
+// Aula 6: Logger
+app.get("/testLogger", (req, res) => {
+  res.send("<p>O Logger HTMX está ativo e registrando os eventos.</p>");
+});
+
+// Rota para a Aula 7: Manipulação de Eventos de Formulário
+app.get("/onChange", (req, res) => {
+  res.send("<p>Evento change detectado.</p>");
+});
+
+app.get("/onFocus", (req, res) => {
+  res.send("<p>Campo em foco.</p>");
+});
+
+app.get("/onBlur", (req, res) => {
+  res.send("<p>Campo perdeu o foco.</p>");
+});
+
+app.post(
+  "/formValidation",
+  express.urlencoded({ extended: true }),
+  (req, res) => {
+    const { username, email } = req.body;
+
+    // Verifica se os campos foram preenchidos
+    if (!username || !email) {
+      res.send("<p>Por favor, preencha todos os campos.</p>");
+    } else {
+      res.send("<p>Formulário enviado com sucesso!</p>");
+    }
+  }
+);
+
+// Rota para a Aula 8: Eventos Customizados e Acionadores HTMX
+app.get("/customEvent", (req, res) => {
+  res.send("<p>Evento Customizado Acionado</p>");
+});
+
+// Rota para a Aula 9: Integração com JavaScript
+app.get("/jsIntegration", (req, res) => {
+  res.send("<p>Conteúdo carregado via JavaScript e HTMX</p>");
 });
 
 app.listen(port, () => {

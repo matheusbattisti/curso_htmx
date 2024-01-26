@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do com HTMX</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="scripts.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 mt-2">
+          <h1 class="text-center mb-4">Gerenciador de Tarefas</h1>
+
+          <!-- Formulário de criação -->
+          <form
+            id="todo-form"
+            hx-target="#msg"
+            hx-post="http://localhost:3000/todos"
+            class="mb-4"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                name="texto"
+                placeholder="Tarefa"
+                class="form-control"
+                id="todo-texto"
+              />
+            </div>
+            <div class="form-group">
+              <select
+                name="dificuldade"
+                class="form-control"
+                id="todo-dificuldade"
+              >
+                <option value="Fácil">Fácil</option>
+                <option value="Intermediária">Intermediária</option>
+                <option value="Difícil">Difícil</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+          </form>
+
+          <div id="msg"></div>
+
+          <!-- Formulário de edição -->
+          <form
+            id="edit-form"
+            hx-put="http://localhost:3000/todos/"
+            style="display: none"
+            hx-target="#msg"
+            class="mb-4"
+          >
+            <input type="hidden" name="id" id="edit-id" />
+            <div class="form-group">
+              <input
+                type="text"
+                name="texto"
+                placeholder="Tarefa"
+                class="form-control"
+                id="edit-texto"
+              />
+            </div>
+            <div class="form-group">
+              <select
+                name="dificuldade"
+                class="form-control"
+                id="edit-dificuldade"
+              >
+                <option value="Fácil">Fácil</option>
+                <option value="Intermediária">Intermediária</option>
+                <option value="Difícil">Difícil</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success">
+              Salvar Alterações
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="cancelEdit()"
+            >
+              Cancelar
+            </button>
+          </form>
+
+          <div
+            id="todo-list"
+            hx-get="http://localhost:3000/todos"
+            hx-trigger="load"
+            class="mt-4"
+          >
+            <!-- As tarefas serão carregadas aqui -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
