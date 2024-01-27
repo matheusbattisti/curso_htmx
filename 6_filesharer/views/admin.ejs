@@ -1,0 +1,19 @@
+<%- include('partials/header') -%>
+
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold">Página de Administração</h1>
+
+  <!-- Formulário para upload de arquivos -->
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <!-- Campos para upload de arquivo -->
+    <input type="file" name="arquivo" />
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Lista de arquivos -->
+  <div id="file-list" hx-get="/admin/fetch-files" hx-trigger="load">
+    <!-- Os arquivos serão carregados aqui -->
+  </div>
+</div>
+
+<%- include('partials/footer') -%>

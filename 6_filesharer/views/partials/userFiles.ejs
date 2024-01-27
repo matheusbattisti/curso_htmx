@@ -1,0 +1,10 @@
+<% if(files && files.length) { %> <% files.forEach(file => { %>
+<div>
+  <p><%= file.nome %></p>
+  <!-- Outros detalhes do arquivo -->
+</div>
+<% }); %> <% } else { %>
+<div>
+  <p>Nenhum arquivo enviado.</p>
+</div>
+<% } %>

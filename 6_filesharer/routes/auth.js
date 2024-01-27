@@ -14,6 +14,7 @@ router.get("/register", (req, res) => {
 // Rota de Registro
 router.post("/register", async (req, res) => {
   const { nome, email, senha } = req.body;
+
   const hashSenha = await bcrypt.hash(senha, 10);
 
   try {
@@ -22,7 +23,11 @@ router.post("/register", async (req, res) => {
     // Autenticar o usuário após o registro
     req.session.userId = newUser.id; // Armazenar o ID do usuário na sessão
 
-    res.redirect("/"); // Redirecionar para a página inicial
+    console.log(newUser);
+
+    res.setHeader("HX-Redirect", "/admin");
+
+    res.send("Registro efetuado!");
   } catch (error) {
     res.send("Erro ao registrar o usuário.");
   }
@@ -36,7 +41,7 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ where: { email } });
     if (user && (await bcrypt.compare(senha, user.senha))) {
       req.session.userId = user.id; // Armazenar o ID do usuário na sessão
-      res.redirect("/");
+      res.send('<div hx-redirect="/admin"></div>');
     } else {
       res.send("Falha no login: credenciais inválidas.");
     }
@@ -48,7 +53,7 @@ router.post("/login", async (req, res) => {
 // Rota de Logout
 router.get("/logout", (req, res) => {
   req.session.destroy(() => {
-    res.redirect("/login");
+    res.send('<div hx-redirect="/login"></div>');
   });
 });
 
