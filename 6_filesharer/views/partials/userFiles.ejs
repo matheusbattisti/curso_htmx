@@ -6,13 +6,22 @@
     <li class="py-4">
       <div class="flex justify-between items-center">
         <span class="text-gray-700"><%= file.nome %></span>
-        <button
-          hx-delete="/admin/delete-file/<%= file.id %>"
-          hx-target="#file-list"
-          class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
-        >
-          Deletar
-        </button>
+        <div>
+          <a
+            href="/<%= file.caminho %>"
+            download="<%= file.nome %>"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mr-2"
+          >
+            Download
+          </a>
+          <button
+            hx-delete="/admin/delete-file/<%= file.id %>"
+            hx-target="#file-list"
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
+          >
+            Deletar
+          </button>
+        </div>
       </div>
     </li>
     <% }) %>

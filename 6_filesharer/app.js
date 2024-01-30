@@ -21,6 +21,9 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true })); // para parsing do corpo da requisição
 
+// Caminho para arquivos
+app.use("/uploads", express.static("uploads"));
+
 // Rotas
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
