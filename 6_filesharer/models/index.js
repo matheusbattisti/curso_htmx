@@ -1,5 +1,3 @@
-// npx sequelize-cli init
-
 "use strict";
 
 const fs = require("fs");
@@ -22,19 +20,10 @@ if (config.use_env_variable) {
   );
 }
 
-// Models
-const UserModel = require("./user");
-const FileModel = require("./file");
-const User = UserModel(sequelize);
-const File = FileModel(sequelize);
-
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
-      file.indexOf(".") !== 0 &&
-      file !== basename &&
-      file.slice(-3) === ".js" &&
-      file.indexOf(".test.js") === -1
+      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
     );
   })
   .forEach((file) => {
@@ -45,6 +34,7 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
   });
 
+// Aplica as associações de cada modelo, se existirem
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
@@ -54,4 +44,4 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = { db, User, File };
+module.exports = db;

@@ -1,14 +1,16 @@
 const express = require("express");
 const session = require("express-session");
+const SQLiteStore = require("connect-sqlite3")(session);
 const app = express();
 const port = 3000;
 
+// Gerenciamento de sessão
 app.use(
   session({
+    store: new SQLiteStore(),
     secret: "segredo",
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: false },
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
@@ -24,7 +26,7 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("layout", { title: "Home", template: "index" });
 });
 
 app.use("/auth", authRoutes);

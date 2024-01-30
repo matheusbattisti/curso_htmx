@@ -14,4 +14,18 @@ document.body.addEventListener("htmx:afterRequest", function (event) {
   if (redirect) {
     window.location.href = redirect;
   }
+
+  // Resetar form de arquivo
+  if (event.target.getAttribute("id") === "file-form") {
+    event.target.reset();
+  }
+
+  // Msg de sucesso ao deletar
+  if (event.detail.pathInfo.requestPath.includes("delete-file")) {
+    const msgDiv = document.getElementById("msg");
+
+    msgDiv.textContent = "Arquivo excluído com sucesso.";
+
+    msgDiv.classList.remove("hidden");
+  }
 });

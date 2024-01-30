@@ -1,5 +1,3 @@
-// npx sequelize-cli migration:generate --name create-files
-
 "use strict";
 
 module.exports = {
@@ -19,6 +17,15 @@ module.exports = {
       },
       caminho: {
         type: Sequelize.STRING,
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
       createdAt: {
         allowNull: false,

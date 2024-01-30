@@ -4,11 +4,11 @@ const { User } = require("../models"); // ajuste o caminho conforme necessário
 const router = express.Router();
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("layout", { title: "Login", template: "login" });
 });
 
 router.get("/register", (req, res) => {
-  res.render("register");
+  res.render("layout", { title: "Registro", template: "register" });
 });
 
 // Rota de Registro
@@ -41,7 +41,10 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ where: { email } });
     if (user && (await bcrypt.compare(senha, user.senha))) {
       req.session.userId = user.id; // Armazenar o ID do usuário na sessão
-      res.send('<div hx-redirect="/admin"></div>');
+
+      res.setHeader("HX-Redirect", "/admin");
+
+      res.send("Login efetuado!");
     } else {
       res.send("Falha no login: credenciais inválidas.");
     }
@@ -53,7 +56,9 @@ router.post("/login", async (req, res) => {
 // Rota de Logout
 router.get("/logout", (req, res) => {
   req.session.destroy(() => {
-    res.send('<div hx-redirect="/login"></div>');
+    res.setHeader("HX-Redirect", "/");
+
+    res.send("Logout efetuado!");
   });
 });
 

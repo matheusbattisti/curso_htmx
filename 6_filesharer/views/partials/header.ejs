@@ -1,41 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>File Sharer</title>
-    <script
-      src="https://unpkg.com/htmx.org@1.9.10"
-      integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
-      crossorigin="anonymous"
-    ></script>
-    <script src="/js/scripts.js" defer></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-gray-100">
-    <nav class="bg-gray-800 p-4 text-white">
-      <div class="container mx-auto flex justify-between">
-        <h1 class="text-xl font-bold">File Sharer</h1>
-        <div>
-          <% if (typeof userId !== 'undefined' && userId) { %>
-          <!-- Usuário está logado -->
-          <a href="/auth/logout" class="text-white hover:text-gray-300 ml-4"
-            >Logout</a
-          >
-          <% } else { %>
-          <!-- Usuário não está logado -->
-          <a href="/auth/login" class="text-white hover:text-gray-300">Login</a>
-          <a href="/auth/register" class="text-white hover:text-gray-300 ml-4"
-            >Registrar</a
-          >
-          <% } %>
-        </div>
-      </div>
-    </nav>
-
-    <%- include('message') -%>
-  </body>
-</html>
+<nav class="bg-gray-800 p-4 text-white">
+  <div class="container mx-auto flex justify-between">
+    <h1 class="text-xl font-bold">File Sharer</h1>
+    <div>
+      <% if (typeof userId !== 'undefined' && userId) { %>
+      <!-- Usuário está logado -->
+      <a href="/admin/all-files" class="text-white hover:text-gray-300"
+        >Biblioteca</a
+      >
+      <a href="/admin" class="text-white hover:text-gray-300 ml-4">Admin</a>
+      <button hx-get="/auth/logout" class="text-white hover:text-gray-300 ml-4">
+        Logout
+      </button>
+      <% } else { %>
+      <!-- Usuário não está logado -->
+      <a href="/auth/login" class="text-white hover:text-gray-300">Login</a>
+      <a href="/auth/register" class="text-white hover:text-gray-300 ml-4"
+        >Registrar</a
+      >
+      <% } %>
+    </div>
+  </div>
+</nav>

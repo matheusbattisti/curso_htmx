@@ -1,19 +1,71 @@
-<%- include('partials/header') -%>
-
 <div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold">Página de Administração</h1>
+  <h1 class="text-2xl font-bold text-center">Página de Administração</h1>
 
-  <!-- Formulário para upload de arquivos -->
-  <form action="/upload" method="post" enctype="multipart/form-data">
-    <!-- Campos para upload de arquivo -->
-    <input type="file" name="arquivo" />
-    <button type="submit">Enviar</button>
-  </form>
+  <div class="flex justify-center mt-4">
+    <div class="w-1/2" hx-ext="response-targets">
+      <!-- Formulário para upload de arquivos -->
+      <form
+        hx-post="/admin/upload"
+        enctype="multipart/form-data"
+        class="flex flex-col space-y-4 bg-white p-4 rounded shadow-md"
+        hx-target="#file-list"
+        hx-target-error="#msg"
+        id="file-form"
+      >
+        <div>
+          <label
+            for="nomeArquivo"
+            class="block text-sm font-medium text-gray-700"
+            >Nome do Arquivo</label
+          >
+          <input
+            type="text"
+            name="nome"
+            id="nomeArquivo"
+            placeholder="Digite o nome do arquivo"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          />
+        </div>
 
-  <!-- Lista de arquivos -->
-  <div id="file-list" hx-get="/admin/fetch-files" hx-trigger="load">
-    <!-- Os arquivos serão carregados aqui -->
+        <div>
+          <label
+            for="descricaoArquivo"
+            class="block text-sm font-medium text-gray-700"
+          >
+            Descrição do Arquivo
+          </label>
+          <textarea
+            name="descricao"
+            id="descricaoArquivo"
+            rows="4"
+            placeholder="Digite uma descrição para o arquivo"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          ></textarea>
+        </div>
+
+        <div>
+          <label for="arquivo" class="block text-sm font-medium text-gray-700"
+            >Selecione o Arquivo</label
+          >
+          <input
+            type="file"
+            name="arquivo"
+            id="arquivo"
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          Enviar
+        </button>
+      </form>
+
+      <div id="file-list" hx-get="/admin/fetch-files" hx-trigger="load">
+        <!-- Os arquivos serão carregados aqui via HTMX -->
+      </div>
+    </div>
   </div>
 </div>
-
-<%- include('partials/footer') -%>

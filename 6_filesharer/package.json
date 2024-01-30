@@ -13,9 +13,11 @@
   "dependencies": {
     "autoprefixer": "^10.4.17",
     "bcrypt": "^5.1.1",
+    "connect-sqlite3": "^0.9.13",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "multer": "^1.4.5-lts.1",
     "postcss": "^8.4.33",
     "sequelize": "^6.35.2",
     "sqlite3": "^5.1.7",

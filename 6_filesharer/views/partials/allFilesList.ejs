@@ -1,0 +1,20 @@
+<div class="space-y-4">
+  <% files.forEach(file => { %>
+  <div class="border p-4 rounded shadow-sm">
+    <div class="flex justify-between items-center">
+      <span class="text-lg font-semibold"><%= file.nome %></span>
+      <a
+        href="<%= file.caminho %>"
+        download="<%= file.nome %>"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Download
+      </a>
+    </div>
+    <p class="text-sm text-gray-600 mt-2"><%= file.descricao %></p>
+    <p class="text-sm italic text-gray-500 mt-2">Por: <%= file.User.nome %></p>
+  </div>
+  <% }) %> <% if(files.length === 0) { %>
+  <p>Nenhum arquivo encontrado.</p>
+  <% } %>
+</div>

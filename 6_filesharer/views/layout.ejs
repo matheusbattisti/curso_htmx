@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%- title %></title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.10"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://unpkg.com/htmx.org/dist/ext/response-targets.js"></script>
+
+    <script src="/js/scripts.js" defer></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 flex flex-col min-h-screen">
+    <%- include('partials/header') -%> <%- include('partials/message') -%>
+    <main class="flex-grow"><%- include(template) %></main>
+
+    <%- include('partials/footer') -%>
+  </body>
+</html>

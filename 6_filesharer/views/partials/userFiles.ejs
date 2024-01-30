@@ -1,10 +1,23 @@
-<% if(files && files.length) { %> <% files.forEach(file => { %>
-<div>
-  <p><%= file.nome %></p>
-  <!-- Outros detalhes do arquivo -->
+<div class="mt-4">
+  <h1 class="text-2xl font-bold text-center">Seus arquivos</h1>
+  <% if (files && files.length > 0) { %>
+  <ul class="divide-y divide-gray-200">
+    <% files.forEach(file => { %>
+    <li class="py-4">
+      <div class="flex justify-between items-center">
+        <span class="text-gray-700"><%= file.nome %></span>
+        <button
+          hx-delete="/admin/delete-file/<%= file.id %>"
+          hx-target="#file-list"
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
+        >
+          Deletar
+        </button>
+      </div>
+    </li>
+    <% }) %>
+  </ul>
+  <% } else { %>
+  <p class="text-gray-500">Nenhum arquivo foi encontrado.</p>
+  <% } %>
 </div>
-<% }); %> <% } else { %>
-<div>
-  <p>Nenhum arquivo enviado.</p>
-</div>
-<% } %>
