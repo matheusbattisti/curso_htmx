@@ -7,7 +7,6 @@ const port = 3000;
 const app = express();
 
 app.use(cors());
-app.use(express.json());
 
 // Para dados de formulário
 app.use(express.urlencoded({ extended: true }));

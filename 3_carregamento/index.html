@@ -19,24 +19,23 @@
     </button>
     <div id="targetById">Conteúdo será carregado aqui.</div>
 
-    <!-- Aula 2 -->
     <button hx-get="http://localhost:3000/content" hx-target=".targetByClass">
       Atualizar por Classe
     </button>
     <div class="targetByClass">Primeiro conteúdo de classe.</div>
     <div class="targetByClass">Segundo conteúdo de classe.</div>
 
-    <!-- Aula 3 -->
+    <!-- Aula 2 -->
     <h2>Content Swapping com HTMX</h2>
-    <button hx-get="http://localhost:3000/newContent">
+    <button hx-get="http://localhost:3000/newContent" hx-target="#swapContent">
       Carregar Novo Conteúdo
     </button>
-    <button hx-get="http://localhost:3000/newContent" hx-target="#swapContent">
+    <button hx-get="http://localhost:3000/newContent" hx-target="#swapContent" hx-swap="innerHTML">
       Carregar Novo Conteúdo
     </button>
     <div id="swapContent">Conteúdo original. Será substituído.</div>
 
-    <!-- Aula 4 -->
+    <!-- Aula 3 -->
     <h2>Tipos Avançados de Swap</h2>
     <div id="swapArea">
       <button
@@ -69,7 +68,7 @@
       </button>
     </div>
 
-    <!-- Aula 5 -->
+    <!-- Aula 4 -->
     <h2>Out of Bound Swap no HTMX</h2>
     <button
       hx-get="http://localhost:3000/outOfBound"
@@ -82,7 +81,7 @@
     </div>
     <div id="ignored-target"></div>
 
-    <!-- Aula 6 -->
+    <!-- Aula 5 -->
     <h2>Carregando um Subset da Resposta com hx-select</h2>
     <button
       hx-get="http://localhost:3000/subset"
@@ -93,7 +92,7 @@
     </button>
     <div id="result">Aqui será carregado um subset da resposta.</div>
 
-    <!-- Aula 7 -->
+    <!-- Aula 6 -->
     <h2>Uso Avançado de hx-params</h2>
     <button
       hx-get="http://localhost:3000/advancedParams?lang=javascript&user=Matheus"
@@ -104,7 +103,7 @@
     </button>
     <div id="advanced-params-result">Resultado aqui.</div>
 
-    <!-- Aula 8 -->
+    <!-- Aula 7 -->
     <h2>Manipulando Respostas JSON com HTMX</h2>
     <button hx-get="http://localhost:3000/userData" hx-target="#user-data">
       Carregar Dados do Usuário
@@ -120,7 +119,7 @@
     </button>
     <div id="user-data-2"></div>
 
-    <!-- Aula 9 -->
+    <!-- Aula 8 -->
     <h2>Implementando Lazy Loading com HTMX</h2>
     <img
       src="https://via.placeholder.com/150"
